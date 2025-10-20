@@ -1,226 +1,280 @@
 # Zed Laravel Extension
 
-Rozšírenie pre [Zed editor](https://zed.dev) ktoré poskytuje podporu pre Laravel framework v PHP projektoch.
+A comprehensive Laravel extension for Zed editor that provides intelligent navigation and enhanced development experience for Laravel projects.
 
-## Funkcie
+## Features
 
-### 🎯 Go to Definition pre Laravel Helper funkcie
+### Go to Definition for Laravel Helper Functions
 
-Rozšírenie poskytuje inteligentnú navigáciu pre najčastejšie používané Laravel helper funkcie:
+The extension provides intelligent navigation for the most commonly used Laravel helper functions:
 
-- **`config('key')`** - presmeruje na konfiguračné súbory v `config/` priečinku
-- **`view('name')`** - presmeruje na Blade/PHP view súbory v `resources/views/`
-- **`route('name')`** - presmeruje na route definície v `routes/` súboroch
-- **`asset('path')`** - presmeruje na statické súbory v `public/` priečinku
-- **`url('path')`** - presmeruje na routes alebo statické súbory
-- **`trans('key')`** - presmeruje na prekladové súbory v `lang/` priečinku
-- **`env('key')`** - presmeruje na environment premenné v `.env` súbore
+#### Laravel Helper Functions
+- **`config('key')`** - Navigate to configuration files in `config/` directory
+- **`view('name')`** - Navigate to Blade/PHP view files in `resources/views/`
+- **`route('name')`** - Navigate to route definitions in `routes/` files
+- **`asset('path')`** - Navigate to static files in `public/` directory
+- **`url('path')`** - Navigate to routes or static files
+- **`trans('key')`** / **`__('key')`** - Navigate to translation files in `lang/` directory
+- **`env('key')`** - Navigate to environment variables in `.env` file
+- **`old('field')`** - Navigate to session flash data
+- **`session('key')`** - Navigate to session files
+- **`cache('key')`** - Navigate to cache files
+- **`storage_path('path')`** - Navigate to storage files
+- **`public_path('path')`** - Navigate to public files
+- **`base_path('path')`** - Navigate to root project files
+- **`app_path('path')`** - Navigate to app files
+- **`database_path('path')`** - Navigate to database files
+- **`resource_path('path')`** - Navigate to resources files
 
-### 🔧 Integrácia s PHP Language Serverom
+#### Blade Components
+- **`<x-component>`** - Navigate to Blade components in `resources/views/components/` or `app/View/Components/`
 
-- Používa **Intelephense** language server pre základnú PHP podporu
-- Rozšírená funkcionalita špecificky pre Laravel projekty cez custom LSP proxy
-- Plná podpora pre PHP syntax highlighting, autocomplete a error detection
+#### Laravel Facades
+- **`Auth::method()`** - Navigate to Auth facade definitions
+- **`Cache::method()`** - Navigate to Cache facade definitions
+- **`DB::method()`** - Navigate to DB facade definitions
+- **`Storage::method()`** - Navigate to Storage facade definitions
+- **`Mail::method()`** - Navigate to Mail facade definitions
+- **`Log::method()`** - Navigate to Log facade definitions
+- **`Validator::method()`** - Navigate to Validator facade definitions
+- **`Hash::method()`** - Navigate to Hash facade definitions
+- **`Password::method()`** - Navigate to Password facade definitions
 
-## Inštalácia
+#### Database & Migrations
+- **`Schema::method()`** - Navigate to Schema facade definitions
+- **`Blueprint::method()`** - Navigate to Blueprint definitions
 
-### Požiadavky
+#### Validation Rules
+- **Validation rules** - Navigate to custom validation rules in `app/Rules/` or `app/Http/Requests/`
 
-- [Zed editor](https://zed.dev) (najnovšia verzia)
-- Node.js (pre LSP proxy)
-- Rust toolchain (pre kompiláciu rozšírenia)
-- Intelephense (inštalovaný cez npm alebo dostupný v node_modules)
+#### Service Providers & Bindings
+- **`$this->app->bind()`** - Navigate to service binding definitions
+- **`$this->app->singleton()`** - Navigate to singleton service definitions
+- **`$this->app->bindIf()`** - Navigate to conditional service bindings
 
-### Kroky inštalácie
+#### Events & Listeners
+- **`event(new EventName())`** - Navigate to event definitions
+- **`Event::listen()`** - Navigate to event listener definitions
+- **`Event::dispatch()`** - Navigate to event dispatching
 
-1. **Klonujte repozitár:**
-   ```bash
-   git clone https://github.com/yourusername/zed-laravel.git
-   cd zed-laravel
-   ```
+#### Queues & Jobs
+- **`dispatch(new JobName())`** - Navigate to job definitions
+- **`Queue::push()`** - Navigate to queue job definitions
 
-2. **Skompilujte rozšírenie:**
-   ```bash
-   cargo build --release
-   ```
+### Integration with PHP Language Server
 
-3. **Nainštalujte rozšírenie do Zed:**
-   ```bash
-   # Vytvorte extensions priečinok (ak neexistuje)
-   mkdir -p ~/.config/zed/extensions/
-   
-   # Skopírujte zed_laravel.wasm súbor do Zed extensions priečinka
-   cp target/wasm32-wasip2/release/zed_laravel.wasm ~/.config/zed/extensions/
-   ```
+- Uses **Intelephense** language server for basic PHP support
+- Extended functionality specifically for Laravel projects via custom LSP proxy
 
-4. **Nainštalujte Intelephense (ak nie je nainštalovaný):**
-   ```bash
-   # Globálne cez npm
-   npm install -g intelephense
-   
-   # Alebo lokálne v projekte
-   npm install intelephense
-   ```
+## Installation
 
-5. **Reštartujte Zed editor**
+### Prerequisites
 
-## Použitie
+- Zed editor
+- Node.js (for Intelephense language server)
+- Intelephense language server
 
-Po inštalácii rozšírenia:
+### Install Intelephense
 
-1. **Otvoríte Laravel projekt** v Zed editore
-2. **Rozšírenie sa automaticky aktivuje** pre PHP súbory
-3. **Intelephense sa použije** ako language server s rozšírenou Laravel funkcionalitou
-4. **Používajte Ctrl+Click** (alebo Cmd+Click na macOS) na Laravel helper funkcie pre navigáciu
+```bash
+# Install Intelephense globally
+npm install -g intelephense
 
-### Príklady použitia
+# Or install locally in your Laravel project
+npm install --save-dev intelephense
+```
+
+### Install the Extension
+
+1. Clone this repository:
+```bash
+git clone https://github.com/your-username/zed-laravel-extension.git
+cd zed-laravel-extension
+```
+
+2. Build the extension:
+```bash
+cargo build --release
+```
+
+3. Copy the extension to Zed's extensions directory:
+```bash
+mkdir -p ~/.config/zed/extensions/
+cp target/wasm32-wasip2/release/zed_laravel.wasm ~/.config/zed/extensions/
+```
+
+4. Restart Zed editor
+
+## Usage
+
+### Basic Usage
+
+1. Open a Laravel project in Zed editor
+2. The extension will automatically detect Laravel files and provide enhanced navigation
+3. Use **Ctrl+Click** on any Laravel helper function to navigate to its definition
+4. Hover over functions for tooltip information
+
+### Example
 
 ```php
-// Config helper - presmeruje na config/app.php
+<?php
+
+// Navigate to config/app.php
 $appName = config('app.name');
 
-// View helper - presmeruje na resources/views/welcome.blade.php
+// Navigate to resources/views/welcome.blade.php
 return view('welcome');
 
-// Route helper - presmeruje na routes/web.php
+// Navigate to routes/web.php
 return redirect()->route('home');
 
-// Asset helper - presmeruje na public/css/app.css
-echo asset('css/app.css');
+// Navigate to Blade component
+<x-button>Click me</x-button>
 
-// URL helper - presmeruje na routes alebo public súbory
-echo url('api/users');
+// Navigate to Auth facade
+Auth::user();
 
-// Translation helper - presmeruje na lang/en/messages.php
-echo trans('messages.welcome');
+// Navigate to event definition
+event(new UserRegistered($user));
 
-// Environment helper - presmeruje na .env súbor
-$dbHost = env('DB_HOST');
+// Navigate to job definition
+dispatch(new SendWelcomeEmail($user));
 ```
 
-## Podporované Laravel Helper funkcie
+## Supported Laravel Functionality
 
-| Helper funkcia | Popis | Príklad |
-|----------------|-------|---------|
-| `config()` | Navigácia na konfiguračné súbory | `config('app.name')` |
-| `view()` | Navigácia na Blade/PHP views | `view('welcome')` |
-| `route()` | Navigácia na route definície | `route('home')` |
-| `asset()` | Navigácia na statické súbory | `asset('css/app.css')` |
-| `url()` | Navigácia na routes alebo súbory | `url('api/users')` |
-| `trans()` | Navigácia na prekladové súbory | `trans('messages.welcome')` |
-| `env()` | Navigácia na environment premenné | `env('DB_HOST')` |
+### Laravel Helper Functions
+| Helper Function | Description | Example |
+|----------------|-------------|---------|
+| `config()` | Navigate to configuration files | `config('app.name')` |
+| `view()` | Navigate to Blade/PHP views | `view('welcome')` |
+| `route()` | Navigate to route definitions | `route('home')` |
+| `asset()` | Navigate to static files | `asset('css/app.css')` |
+| `url()` | Navigate to routes or files | `url('api/users')` |
+| `trans()` / `__()` | Navigate to translation files | `trans('messages.welcome')` |
+| `env()` | Navigate to environment variables | `env('DB_HOST')` |
+| `old()` | Navigate to session flash data | `old('email')` |
+| `session()` | Navigate to session files | `session('user_id')` |
+| `cache()` | Navigate to cache files | `cache('key')` |
+| `storage_path()` | Navigate to storage files | `storage_path('app/uploads')` |
+| `public_path()` | Navigate to public files | `public_path('css/style.css')` |
+| `base_path()` | Navigate to root project files | `base_path('composer.json')` |
+| `app_path()` | Navigate to app files | `app_path('Models/User.php')` |
+| `database_path()` | Navigate to database files | `database_path('migrations')` |
+| `resource_path()` | Navigate to resources files | `resource_path('views/welcome.blade.php')` |
 
-## Architektúra
+### Blade Components
+| Component | Description | Example |
+|-----------|-------------|---------|
+| `<x-component>` | Navigate to Blade components | `<x-button>Click me</x-button>` |
+| `<x:component>` | Navigate to Blade components | `<x:form.input name="email" />` |
 
-Rozšírenie pozostáva z dvoch hlavných častí:
+### Laravel Facades
+| Facade | Description | Example |
+|--------|-------------|---------|
+| `Auth::` | Navigate to Auth facade | `Auth::user()` |
+| `Cache::` | Navigate to Cache facade | `Cache::get('key')` |
+| `DB::` | Navigate to DB facade | `DB::table('users')` |
+| `Storage::` | Navigate to Storage facade | `Storage::get('file.txt')` |
+| `Mail::` | Navigate to Mail facade | `Mail::to('user@example.com')` |
+| `Log::` | Navigate to Log facade | `Log::info('message')` |
+| `Validator::` | Navigate to Validator facade | `Validator::make($data, $rules)` |
+| `Hash::` | Navigate to Hash facade | `Hash::make('password')` |
+| `Password::` | Navigate to Password facade | `Password::sendResetLink($request)` |
 
-### Rust Extension (`src/lib.rs`)
-- Hlavný kód rozšírenia pre Zed editor
-- Spravuje konfiguráciu Intelephense language servera
-- Komunikuje s LSP proxy
+### Database & Migrations
+| Function | Description | Example |
+|----------|-------------|---------|
+| `Schema::` | Navigate to Schema facade | `Schema::create('users', ...)` |
+| `Blueprint::` | Navigate to Blueprint definitions | `$table->string('name')` |
 
-### Node.js LSP Proxy (`lsp-proxy/proxy.js`)
-- Sprostredkuje komunikáciu medzi Zed a Intelephense
-- Rozširuje LSP funkcionalitu o Laravel-specifické features
-- Implementuje custom resolvery pre Laravel helper funkcie
+### Validation Rules
+| Function | Description | Example |
+|----------|-------------|---------|
+| Validation rules | Navigate to custom validation rules | `'email' => 'required|email|unique:users'` |
 
-## Vývoj
+### Service Providers & Bindings
+| Function | Description | Example |
+|----------|-------------|---------|
+| `$this->app->bind()` | Navigate to service binding definitions | `$this->app->bind(Interface::class, Implementation::class)` |
+| `$this->app->singleton()` | Navigate to singleton service definitions | `$this->app->singleton(Service::class, function() {})` |
+| `$this->app->bindIf()` | Navigate to conditional service bindings | `$this->app->bindIf(Interface::class, Implementation::class)` |
 
-### Lokálny vývoj
+### Events & Listeners
+| Function | Description | Example |
+|----------|-------------|---------|
+| `event()` | Navigate to event definitions | `event(new UserRegistered($user))` |
+| `Event::listen()` | Navigate to event listener definitions | `Event::listen(UserRegistered::class, function($event) {})` |
+| `Event::dispatch()` | Navigate to event dispatching | `Event::dispatch(new UserRegistered($user))` |
 
-1. **Klonujte repozitár:**
-   ```bash
-   git clone https://github.com/yourusername/zed-laravel.git
-   cd zed-laravel
-   ```
+### Queues & Jobs
+| Function | Description | Example |
+|----------|-------------|---------|
+| `dispatch()` | Navigate to job definitions | `dispatch(new SendWelcomeEmail($user))` |
+| `Queue::push()` | Navigate to queue job definitions | `Queue::push(new SendWelcomeEmail($user))` |
 
-2. **Nainštalujte závislosti:**
-   ```bash
-   # Rust závislosti sa nainštalujú automaticky pri cargo build
-   cargo build
-   ```
+## Architecture
 
-3. **Testovanie:**
-   ```bash
-   # Skontrolujte syntax
-   cargo check
-   
-   # Testujte Node.js proxy
-   cd lsp-proxy
-   node --check proxy.js
-   ```
+The extension consists of two main parts:
 
-### Pridávanie nových Laravel Helper funkcií
+1. **Rust Extension** (`src/lib.rs`) - Main extension logic that launches the language server
+2. **LSP Proxy** (`lsp-proxy/proxy.js`) - Node.js proxy that intercepts and enhances language server requests
 
-Pre pridanie podpory nového Laravel helper:
+### How it Works
 
-1. **Rozšírte regex pattern** v `handleDefinition()` funkcii
-2. **Implementujte resolver funkciu** v `LSPProxy` triede
-3. **Pridajte error handling** a dokumentáciu
+1. The Rust extension launches Intelephense language server via the Node.js proxy
+2. The proxy intercepts LSP requests and responses
+3. For Laravel-specific functions, the proxy provides custom navigation logic
+4. For standard PHP functions, requests are forwarded to Intelephense
 
-Príklad:
-```javascript
-// V handleDefinition()
-const newHelperMatch = line.match(/newHelper\s*\(\s*['"]([^'"]+)['"]\s*\)/);
-if (newHelperMatch) {
-  return this.resolveNewHelper(newHelperMatch[1]);
-}
+## Performance Optimizations
 
-// Nová resolver funkcia
-resolveNewHelper(param) {
-  try {
-    // Implementácia logiky
-    return result;
-  } catch (error) {
-    console.error("Error resolving newHelper:", error);
-    return null;
-  }
-}
+- **File caching** with 5-second expiration
+- **Cursor-based matching** for precise search
+- **Memory management** with automatic cache cleanup
+- **Asynchronous processing** to avoid blocking the main thread
+
+## Troubleshooting
+
+### Common Issues
+
+1. **"intelephense not found" error**
+   - Install Intelephense: `npm install -g intelephense`
+   - Or install locally: `npm install --save-dev intelephense`
+
+2. **"operation not supported on this platform" error**
+   - Ensure you're using the correct Intelephense version
+   - Check that Node.js is properly installed
+
+3. **Extension not loading**
+   - Restart Zed editor after installation
+   - Check that the `.wasm` file is in the correct location
+
+### Debug Mode
+
+To enable debug logging, set the environment variable:
+```bash
+export ZED_LARAVEL_DEBUG=1
 ```
 
-## Riešenie problémov
+## Contributing
 
-### Intelephense sa nenájde
-- Skontrolujte, či máte nainštalovaný Intelephense
-- Skontrolujte, či je Intelephense v PATH alebo v node_modules
-- Skontrolujte logy v Zed editore
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-### Laravel helper funkcie nefungujú
-- Skontrolujte, či je projekt správne rozpoznaný ako Laravel projekt
-- Skontrolujte, či sú súbory v štandardných Laravel priečinkoch
-- Skontrolujte logy v Zed editore
+### Development Setup
 
-### Rozšírenie sa neaktivuje
-- Skontrolujte, či je rozšírenie správne nainštalované
-- Reštartujte Zed editor
-- Skontrolujte, či máte najnovšiu verziu Zed editora
+1. Clone the repository
+2. Install dependencies: `cargo build`
+3. Make your changes
+4. Test the extension
+5. Submit a pull request
 
-## Príspevky
+## License
 
-Príspevky sú vítané! Prosím:
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-1. Forknite repozitár
-2. Vytvorte feature branch (`git checkout -b feature/amazing-feature`)
-3. Commitnite zmeny (`git commit -m 'Add amazing feature'`)
-4. Pushnite branch (`git push origin feature/amazing-feature`)
-5. Otvorte Pull Request
+## Acknowledgments
 
-## Licencia
-
-Tento projekt je licencovaný pod MIT licenciou - pozrite si [LICENSE](LICENSE) súbor pre detaily.
-
-## Podpora
-
-Ak máte problémy alebo otázky:
-
-- Otvorte [Issue](https://github.com/yourusername/zed-laravel/issues) na GitHub
-- Skontrolujte [Zed dokumentáciu](https://zed.dev/docs)
-- Skontrolujte [Laravel dokumentáciu](https://laravel.com/docs)
-
-## Changelog
-
-### v0.0.1
-- Počiatočná verzia
-- Podpora pre `config()`, `view()`, `route()` helper funkcie
-- Integrácia s Intelephense language serverom
-- Automatická inštalácia závislostí
+- [Zed Editor](https://zed.dev/) for providing the extension platform
+- [Intelephense](https://intelephense.com/) for the excellent PHP language server
+- [Laravel](https://laravel.com/) for the amazing PHP framework

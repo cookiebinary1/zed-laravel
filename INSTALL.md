@@ -1,114 +1,202 @@
-# Inštalačný návod pre Zed Laravel Extension
+# Installation Guide
 
-## Rýchla inštalácia
+This guide will help you install the Zed Laravel Extension step by step.
 
-### 1. Nainštalujte Intelephense
+## Prerequisites
+
+Before installing the extension, make sure you have the following installed:
+
+- **Zed Editor** - Download from [zed.dev](https://zed.dev/)
+- **Node.js** - Download from [nodejs.org](https://nodejs.org/) (version 14 or higher)
+- **Rust** - Download from [rustup.rs](https://rustup.rs/) (for building the extension)
+- **Git** - For cloning the repository
+
+## Step 1: Install Intelephense Language Server
+
+The extension requires Intelephense language server to work properly.
+
+### Option A: Global Installation (Recommended)
 
 ```bash
-# Globálne cez npm (odporúčané)
 npm install -g intelephense
-
-# Alebo lokálne v Laravel projekte
-cd /path/to/your/laravel/project
-npm install intelephense
 ```
 
-### 2. Skompilujte rozšírenie
+### Option B: Local Installation
 
 ```bash
-cd /path/to/zed-laravel
+# In your Laravel project directory
+npm install --save-dev intelephense
+```
+
+### Verify Installation
+
+```bash
+# Check if Intelephense is installed
+intelephense --version
+```
+
+## Step 2: Build the Extension
+
+1. Clone the repository:
+```bash
+git clone https://github.com/your-username/zed-laravel-extension.git
+cd zed-laravel-extension
+```
+
+2. Build the extension:
+```bash
 cargo build --release
 ```
 
-### 3. Nainštalujte rozšírenie do Zed
+This will create the extension file at `target/wasm32-wasip2/release/zed_laravel.wasm`.
 
+## Step 3: Install the Extension
+
+1. Create the extensions directory (if it doesn't exist):
 ```bash
-# Vytvorte extensions priečinok (ak neexistuje)
 mkdir -p ~/.config/zed/extensions/
+```
 
-# Skopírujte zed_laravel.wasm do Zed extensions priečinka
+2. Copy the extension file:
+```bash
 cp target/wasm32-wasip2/release/zed_laravel.wasm ~/.config/zed/extensions/
 ```
 
-### 4. Reštartujte Zed editor
+## Step 4: Restart Zed Editor
 
-Zatvorte a znovu otvorte Zed editor.
+Close and restart Zed editor to load the extension.
 
-## Overenie inštalácie
+## Step 5: Test the Installation
 
-1. Otvorte Laravel projekt v Zed editore
-2. Otvorte PHP súbor s Laravel helper funkciami
-3. Skúste Ctrl+Click na `config('app.name')` - mal by vás presmerovať na `config/app.php`
+1. Open a Laravel project in Zed editor
+2. Open any PHP file with Laravel helper functions
+3. Try Ctrl+Click on a helper function like `config('app.name')`
+4. You should be navigated to the appropriate file
 
-## Riešenie problémov
+## Troubleshooting
 
-### Chyba: "intelephense not found"
+### Issue: "intelephense not found"
 
-**Riešenie:**
+**Error Message:**
+```
+intelephense not found. Please install it via npm: npm install -g intelephense
+```
+
+**Solution:**
 ```bash
-# Skontrolujte, či je Intelephense nainštalovaný
-intelephense --version
-
-# Ak nie je, nainštalujte ho
+# Install Intelephense globally
 npm install -g intelephense
 
-# Pridajte do PATH (ak je potrebné)
-export PATH="$PATH:$(npm config get prefix)/bin"
+# Verify installation
+intelephense --version
 ```
 
-### Chyba: "operation not supported on this platform"
+### Issue: "operation not supported on this platform"
 
-**Riešenie:**
-1. Skontrolujte, či je rozšírenie správne nainštalované
-2. Reštartujte Zed editor
-3. Skontrolujte, či je Intelephense správne nainštalovaný
-4. Skontrolujte logy v Zed editore pre podrobnejšie informácie
-
-### Laravel helper funkcie nefungujú
-
-**Riešenie:**
-1. Skontrolujte, či je projekt rozpoznaný ako Laravel projekt
-2. Skontrolujte, či sú súbory v štandardných Laravel priečinkoch:
-   - `config/` pre config helper
-   - `resources/views/` pre view helper
-   - `routes/` pre route helper
-   - `public/` pre asset helper
-   - `lang/` pre trans helper
-
-## Testovanie funkcionality
-
-Vytvorte test súbor `test.php` v Laravel projekte:
-
-```php
-<?php
-
-// Test config helper
-$appName = config('app.name');
-
-// Test view helper
-return view('welcome');
-
-// Test route helper
-return redirect()->route('home');
-
-// Test asset helper
-echo asset('css/app.css');
-
-// Test url helper
-echo url('api/users');
-
-// Test trans helper
-echo trans('messages.welcome');
-
-// Test env helper
-$dbHost = env('DB_HOST');
+**Error Message:**
+```
+Language server intelephense: from extension "Laravel" version 0.0.1: operation not supported on this platform
 ```
 
-Skúste Ctrl+Click na každú helper funkciu - mal by vás presmerovať na príslušný súbor.
+**Solution:**
+1. Ensure you're using the correct Intelephense version
+2. Check that Node.js is properly installed
+3. Try reinstalling Intelephense:
+```bash
+npm uninstall -g intelephense
+npm install -g intelephense
+```
 
-## Podpora
+### Issue: Extension not loading
 
-Ak máte problémy:
-1. Skontrolujte [README.md](README.md) pre podrobnejšie informácie
-2. Otvorte issue na GitHub
-3. Skontrolujte logy v Zed editore (View > Developer > Show Logs)
+**Symptoms:**
+- No Laravel functionality available
+- No hover tooltips for Laravel functions
+
+**Solution:**
+1. Restart Zed editor completely
+2. Check that the extension file exists:
+```bash
+ls -la ~/.config/zed/extensions/zed_laravel.wasm
+```
+3. Rebuild and reinstall the extension:
+```bash
+cargo build --release
+cp target/wasm32-wasip2/release/zed_laravel.wasm ~/.config/zed/extensions/
+```
+
+### Issue: Slow performance
+
+**Symptoms:**
+- Slow response when clicking on Laravel functions
+- Extension feels sluggish
+
+**Solution:**
+1. The extension includes performance optimizations
+2. First click may be slower due to file caching
+3. Subsequent clicks should be faster
+4. If issues persist, check your system resources
+
+## Configuration
+
+### Environment Variables
+
+You can set the following environment variables to configure the extension:
+
+```bash
+# Enable debug logging
+export ZED_LARAVEL_DEBUG=1
+
+# Set custom Intelephense path (if not in PATH)
+export INTELEPHENSE_PATH=/path/to/intelephense
+```
+
+### Laravel Project Structure
+
+The extension works best with standard Laravel project structure:
+
+```
+your-laravel-project/
+├── app/
+│   ├── Http/
+│   ├── Models/
+│   ├── Providers/
+│   └── ...
+├── config/
+├── database/
+├── resources/
+│   └── views/
+├── routes/
+├── storage/
+└── ...
+```
+
+## Uninstallation
+
+To uninstall the extension:
+
+1. Remove the extension file:
+```bash
+rm ~/.config/zed/extensions/zed_laravel.wasm
+```
+
+2. Restart Zed editor
+
+## Support
+
+If you encounter any issues not covered in this guide:
+
+1. Check the [GitHub Issues](https://github.com/your-username/zed-laravel-extension/issues)
+2. Create a new issue with detailed information about your problem
+3. Include your operating system, Zed version, and error messages
+
+## Development
+
+If you want to contribute to the extension:
+
+1. Fork the repository
+2. Make your changes
+3. Test thoroughly
+4. Submit a pull request
+
+For development setup, see the main [README.md](README.md) file.
