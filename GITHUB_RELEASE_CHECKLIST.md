@@ -37,7 +37,7 @@ This checklist ensures your Zed Laravel Extension is ready for public release on
 
 ### Repository Creation
 1. **Create public repository** on GitHub
-2. **Name**: `zed-laravel-extension` (or similar)
+2. **Name**: `zed-laravel`
 3. **Description**: "Comprehensive Laravel extension for Zed editor with intelligent navigation and enhanced development experience"
 4. **Topics**: `zed`, `laravel`, `extension`, `php`, `ide`, `development`
 

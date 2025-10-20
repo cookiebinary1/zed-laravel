@@ -88,8 +88,8 @@ npm install --save-dev intelephense
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/your-username/zed-laravel-extension.git
-cd zed-laravel-extension
+git clone https://github.com/cookiebinary1/zed-laravel.git
+cd zed-laravel
 ```
 
 2. Build the extension:

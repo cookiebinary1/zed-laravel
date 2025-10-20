@@ -20,7 +20,7 @@ The Zed Extension Gallery is the official marketplace for Zed editor extensions.
 Ensure your repository contains all necessary files:
 
 ```
-zed-laravel-extension/
+zed-laravel/
 ├── src/lib.rs                 # Extension source code
 ├── lsp-proxy/proxy.js         # LSP proxy
 ├── extension.toml             # Extension metadata
@@ -39,7 +39,7 @@ name = "zed_laravel"
 version = "0.1.0"
 description = "Laravel extension for Zed editor with intelligent navigation and enhanced development experience"
 authors = ["Your Name <your.email@example.com>"]
-repository = "https://github.com/your-username/zed-laravel-extension"
+repository = "https://github.com/cookiebinary1/zed-laravel"
 
 [language_servers.intelephense]
 name = "Intelephense"
@@ -52,7 +52,7 @@ languages = ["PHP"]
 
 2. **Clone your fork**:
    ```bash
-   git clone https://github.com/your-username/extensions.git
+   git clone https://github.com/cookiebinary1/extensions.git
    cd extensions
    git submodule init
    git submodule update
@@ -60,7 +60,7 @@ languages = ["PHP"]
 
 3. **Add your extension as a submodule**:
    ```bash
-   git submodule add https://github.com/your-username/zed-laravel-extension.git extensions/laravel
+   git submodule add https://github.com/cookiebinary1/zed-laravel.git extensions/laravel
    git add extensions/laravel
    ```
 

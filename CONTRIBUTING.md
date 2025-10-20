@@ -46,8 +46,8 @@ If you find a bug or have a feature request:
 
 1. Clone your fork:
 ```bash
-git clone https://github.com/your-username/zed-laravel-extension.git
-cd zed-laravel-extension
+git clone https://github.com/cookiebinary1/zed-laravel.git
+cd zed-laravel
 ```
 
 2. Build the project:

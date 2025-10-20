@@ -4,7 +4,7 @@ version = "0.0.1"
 schema_version = 1
 authors = ["Zed Laravel Extension Contributors"]
 description = "Comprehensive Laravel extension for Zed editor with intelligent navigation and enhanced development experience for Laravel projects"
-repository = "https://github.com/your-username/zed-laravel-extension"
+repository = "https://github.com/cookiebinary1/zed-laravel"
 
 [language_servers.intelephense]
 name = "Intelephense"
