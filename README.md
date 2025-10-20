@@ -269,9 +269,26 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Test the extension
 5. Submit a pull request
 
+## Disclaimer
+
+**Important Notice**: This extension was largely generated using AI assistance. While it has been tested and optimized, please use it at your own risk. The developers cannot guarantee complete compatibility with all Laravel projects or Zed editor versions.
+
+**Use at your own risk**: This extension is provided as-is without warranty of any kind. Always test thoroughly in your development environment before using in production projects.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Publishing to Zed Extension Gallery
+
+To make this extension available in the official Zed Extension Gallery:
+
+1. **Create a public GitHub repository** with this extension
+2. **Add to central extensions repository** by submitting a pull request to [zed-industries/extensions](https://github.com/zed-industries/extensions)
+3. **Follow Zed's extension guidelines** for proper metadata and structure
+4. **Extension will automatically appear** in Zed Extension Gallery after approval
+
+For detailed publishing instructions, see [Zed Extension Development Guide](https://zed.dev/docs/extensions/developing-extensions).
 
 ## Acknowledgments
 

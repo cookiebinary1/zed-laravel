@@ -1,5 +1,5 @@
 [package]
-name = "zed-laravel"
+name = "zed_laravel"
 version = "0.0.1"
 edition = "2021"
 

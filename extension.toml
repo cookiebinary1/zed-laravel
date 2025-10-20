@@ -2,9 +2,9 @@ id = "laravel"
 name = "Laravel"
 version = "0.0.1"
 schema_version = 1
-authors = ["Your Name <your.email@example.com>"]
-description = "Laravel framework support for Zed - provides goto definition for config(), route(), view() helpers"
-repository = "https://github.com/yourusername/zed-laravel"
+authors = ["Zed Laravel Extension Contributors"]
+description = "Comprehensive Laravel extension for Zed editor with intelligent navigation and enhanced development experience for Laravel projects"
+repository = "https://github.com/your-username/zed-laravel-extension"
 
 [language_servers.intelephense]
 name = "Intelephense"
