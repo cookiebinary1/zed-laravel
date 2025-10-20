@@ -1,0 +1,7 @@
+{
+  "name": "laravel-lsp-proxy",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "proxy.js",
+  "dependencies": {}
+}

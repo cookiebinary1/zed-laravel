@@ -1,0 +1,11 @@
+id = "laravel"
+name = "Laravel"
+version = "0.0.1"
+schema_version = 1
+authors = ["Your Name <your.email@example.com>"]
+description = "Laravel framework support for Zed - provides goto definition for config(), route(), view() helpers"
+repository = "https://github.com/yourusername/zed-laravel"
+
+[language_servers.intelephense]
+name = "Intelephense"
+languages = ["PHP"]

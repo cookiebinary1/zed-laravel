@@ -1,0 +1,24 @@
+id = "laravel-toolkit"
+name = "Laravel Toolkit"
+description = "Laravel-aware navigation, commands, and tooling for Zed."
+version = "0.0.1"
+schema_version = 1
+authors = ["Cookie"]
+repository = "https://github.com/cookie/zed-laravel"
+
+[language_servers.laravel_navigator]
+name = "Laravel Navigator"
+languages = ["PHP", "Blade"]
+command = { extension = true }
+
+[slash_commands.laravel_view]
+description = "Search indexed Blade views and open the selected template."
+requires_argument = false
+
+[slash_commands.laravel_route]
+description = "Search indexed routes and jump to their definitions."
+requires_argument = false
+
+[slash_commands.laravel_artisan]
+description = "Run common artisan tasks with contextual defaults."
+requires_argument = false
